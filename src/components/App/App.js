@@ -9,6 +9,9 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
+import GameBoard from '../GameBoard/GameBoard'
+import Home from '../Home/Home'
+
 class App extends Component {
   constructor () {
     super()
@@ -41,7 +44,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <main className="container">
+        <main className="container-fluid">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -54,6 +57,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <Route exact path='/games' component={GameBoard}/>
+          <Route exact path='/home' component={Home}/>
         </main>
       </Fragment>
     )
