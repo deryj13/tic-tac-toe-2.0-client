@@ -9,8 +9,9 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
-import GameBoard from '../GameBoard/GameBoard'
 import Home from '../Home/Home'
+// import GameBoard from '../GameBoard/GameBoard'
+import Game from '../Game/Game'
 
 class App extends Component {
   constructor () {
@@ -57,8 +58,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <Route exact path='/games' component={GameBoard}/>
-          <Route exact path='/home' component={Home}/>
+          <Route exact path='/games' component={Game}/>
+          <Route exact path='/' component={Home}/>
         </main>
       </Fragment>
     )
