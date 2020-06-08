@@ -10,7 +10,6 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Home from '../Home/Home'
-// import GameBoard from '../GameBoard/GameBoard'
 import Game from '../Game/Game'
 
 class App extends Component {
@@ -33,7 +32,6 @@ class App extends Component {
 
   render () {
     const { alerts, user } = this.state
-
     return (
       <Fragment>
         <Header user={user} />

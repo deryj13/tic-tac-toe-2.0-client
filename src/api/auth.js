@@ -2,9 +2,13 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const signUp = credentials => {
+  console.log(credentials)
   return axios({
     method: 'POST',
     url: apiUrl + '/sign-up',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data: {
       credentials: {
         email: credentials.email,
@@ -19,6 +23,9 @@ export const signIn = credentials => {
   return axios({
     url: apiUrl + '/sign-in',
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data: {
       credentials: {
         email: credentials.email,

@@ -1,8 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 
-body {
-  border: 4px solid rgb(0, 180, 220);
-}
+// body {
+//   border: 4px solid rgb(0, 180, 220);
+// }
 
 main > .container-fluid {
   padding: 0;
@@ -28,6 +28,8 @@ main > .container-fluid {
 
 .container-fluid {
   border: 3px solid rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
 }
 
 .game-container {
@@ -39,4 +41,27 @@ main > .container-fluid {
   margin: 100px;
   padding: 1px;
   width: 462px;
+}
+
+.home-buttons {
+  margin: 2px;
+}
+
+.home-options {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.home-screen {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: 50px;
+}
+
+.jumbo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
