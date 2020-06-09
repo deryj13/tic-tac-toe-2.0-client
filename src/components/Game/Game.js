@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { withRouter } from 'react-router-dom'
-import GameBoard from '../GameBoard/GameBoard'
+import GameBoard from './GameBoard'
 
 class Game extends Component {
   constructor () {
@@ -68,6 +68,7 @@ class Game extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <GameBoard state={this.state} onClick={this.handleClick}/>
     )
