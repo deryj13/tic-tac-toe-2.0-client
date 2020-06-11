@@ -1,6 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 import { createGame } from '../../api/game'
@@ -9,25 +9,28 @@ class CreateGame extends Component {
   constructor () {
     super()
     this.state = {
-      gameID: null
+      cells: null,
+      gameID: null,
+      over: null
     }
   }
   onCreateGame = () => {
     event.preventDefault()
-    createGame(this.props)
+    const { history, setGame } = this.props
+    // console.log(this.props)
+    console.log('these are the props ' + this.props)
+    createGame(this.props.user)
       .then(res => {
-        this.setState({ gameID: res.data.game._id })
+        console.log(res)
+        setGame(res.data.game)
       })
+      .then(() => history.push('/games'))
       .catch(console.error)
   }
-
   render () {
-    if (this.state.gameID) {
-      return <Redirect to='/games'/>
-    }
     return (
       <Fragment>
-        <Button onClick={this.onCreateGame}>New Game</Button>
+        <Button onClick={this.onCreateGame} className="btn btn-primary home-buttons">New Game</Button>
       </Fragment>
     )
   }

@@ -18,6 +18,7 @@ class App extends Component {
 
     this.state = {
       user: null,
+      game: null,
       alerts: []
     }
   }
@@ -26,12 +27,15 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
+  setGame = game => this.setState({ game })
+  clearGame = () => this.setState({ game: null })
+
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { alerts, user, game } = this.state
     return (
       <Fragment>
         <Header user={user} />
@@ -56,11 +60,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/games' render={() => (
-            <Game user={user}/>
-          )}/>
           <Route exact path='/' render={() => (
-            <Home user={user}/>
+            <Home user={user} setGame={this.setGame}/>
+          )}/>
+          <AuthenticatedRoute user={user} exact path='/games' render={() => (
+            <Game user={user} game={game}/>
           )}/>
         </main>
       </Fragment>

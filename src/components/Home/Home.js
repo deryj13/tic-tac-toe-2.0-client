@@ -22,7 +22,7 @@ class Home extends Component {
       <Fragment>
         <Jumbotron className="home-screen col-sm-3 col-md-3 col-lg-3">
           <div className="home-options">
-            <CreateGame user={this.props.user}/>
+            <CreateGame user={this.props.user} setGame={this.props.setGame} />
             <Button href="#about" className="btn btn-primary home-buttons">About</Button>
             <Button href="#change-password" className="btn btn-primary home-buttons">Change Password</Button>
             <Button href="#sign-out"className="btn btn-primary home-buttons">Sign Out</Button>
