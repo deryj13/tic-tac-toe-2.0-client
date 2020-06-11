@@ -4,10 +4,6 @@ import { Redirect, withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 import { createGame } from '../../api/game'
-// import Game from './Game'
-
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
 
 class CreateGame extends Component {
   constructor () {
