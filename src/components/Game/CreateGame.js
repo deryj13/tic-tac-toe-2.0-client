@@ -3,10 +3,11 @@ import React, { Component, Fragment } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
+import { createGame } from '../../api/game'
 // import Game from './Game'
 
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
 
 class CreateGame extends Component {
   constructor () {
@@ -15,19 +16,10 @@ class CreateGame extends Component {
       gameID: null
     }
   }
-  handleClick = () => {
+  onCreateGame = () => {
     event.preventDefault()
-    axios({
-      method: 'POST',
-      url: `${apiUrl}/games`,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.props.user.token}`
-      },
-      data: {}
-    })
+    createGame(this.props)
       .then(res => {
-        console.log(res.data.game)
         this.setState({ gameID: res.data.game._id })
       })
       .catch(console.error)
@@ -39,7 +31,7 @@ class CreateGame extends Component {
     }
     return (
       <Fragment>
-        <Button onClick={this.handleClick}>New Game</Button>
+        <Button onClick={this.onCreateGame}>New Game</Button>
       </Fragment>
     )
   }
