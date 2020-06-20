@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
+
+import Game from './Game'
+
 class ShowGames extends Component {
   constructor () {
     super()
@@ -19,7 +22,8 @@ class ShowGames extends Component {
               <Button key={i} id={games._id} className="game-history-buttons col-3">Game {i}</Button>
             ))}
           </div>
-          <div className="game-board">
+          <div className="game-board hidden col-8">
+            <Game/>
           </div>
         </div>
       </Fragment>
