@@ -43,6 +43,21 @@ main > .container-fluid {
   width: 462px;
 }
 
+.game-history {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 500px;
+}
+
+.game-history-buttons {
+  height: 50px;
+  margin: 5px 3px;
+  padding: 2px;
+}
+
+
 .home-buttons {
   margin: 2px;
 }
@@ -64,4 +79,11 @@ main > .container-fluid {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+
+.show-games-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 1000px;
 }

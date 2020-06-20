@@ -1,6 +1,17 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
+export const indexGame = (user) => {
+  return axios({
+    method: 'GET',
+    url: `${apiUrl}/games`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
+
 export const createGame = (user) => {
   return axios({
     method: 'POST',

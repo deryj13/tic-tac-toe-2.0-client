@@ -3,6 +3,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 
 import CreateGame from '../Game/CreateGame'
+import GetGames from '../Game/GetGames'
 
 class Home extends Component {
   render () {
@@ -23,8 +24,8 @@ class Home extends Component {
         <Jumbotron className="home-screen col-sm-3 col-md-3 col-lg-3">
           <div className="home-options">
             <CreateGame user={this.props.user} setGame={this.props.setGame} />
+            <GetGames user={this.props.user} setGames={this.props.setGames} />
             <Button href="#about" className="btn btn-primary home-buttons">About</Button>
-            <Button href="#change-password" className="btn btn-primary home-buttons">Change Password</Button>
             <Button href="#sign-out"className="btn btn-primary home-buttons">Sign Out</Button>
           </div>
         </Jumbotron>

@@ -9,21 +9,17 @@ class CreateGame extends Component {
   constructor () {
     super()
     this.state = {
-      cells: null,
-      gameID: null,
-      over: null
+      created: false
     }
   }
   onCreateGame = () => {
     event.preventDefault()
     const { history, setGame } = this.props
-    // console.log(this.props)
-    console.log('these are the props ' + this.props)
     createGame(this.props.user)
       .then(res => {
-        console.log(res)
         setGame(res.data.game)
       })
+      .then(() => this.setState({ created: true }))
       .then(() => history.push('/games'))
       .catch(console.error)
   }

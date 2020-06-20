@@ -66,9 +66,11 @@ class Game extends Component {
     this.setState({ xIsNext: !this.state.xIsNext })
     updateGame(user, game, index, value, over)
       .then(res => console.log(res.data.game))
+      .catch(console.error)
   }
 
   render () {
+    console.log(this.props)
     console.log(this.board)
     return (
       <GameBoard state={this.state} onClick={this.handleClick}/>

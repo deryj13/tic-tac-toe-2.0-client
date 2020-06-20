@@ -11,6 +11,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Home from '../Home/Home'
 import Game from '../Game/Game'
+import ShowGames from '../Game/ShowGames'
 
 class App extends Component {
   constructor () {
@@ -19,23 +20,23 @@ class App extends Component {
     this.state = {
       user: null,
       game: null,
+      games: null,
       alerts: []
     }
   }
 
   setUser = user => this.setState({ user })
-
   clearUser = () => this.setState({ user: null })
 
   setGame = game => this.setState({ game })
-  clearGame = () => this.setState({ game: null })
+  setGames = games => this.setState({ games })
 
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
 
   render () {
-    const { alerts, user, game } = this.state
+    const { alerts, user, game, games } = this.state
     return (
       <Fragment>
         <Header user={user} />
@@ -61,10 +62,13 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
           <Route exact path='/' render={() => (
-            <Home user={user} setGame={this.setGame}/>
+            <Home user={user} setGame={this.setGame} setGames={this.setGames}/>
           )}/>
           <AuthenticatedRoute user={user} exact path='/games' render={() => (
             <Game user={user} game={game}/>
+          )}/>
+          <AuthenticatedRoute user={user} path='/game-index' render={() => (
+            <ShowGames user={user} games={games} />
           )}/>
         </main>
       </Fragment>
