@@ -19,7 +19,6 @@ class GetGames extends Component {
     const { user, setGames } = this.props
     indexGame(user)
       .then(res => {
-        console.log(res.data.games)
         setGames(res.data.games)
       })
       .then(() => this.setState({ obtainedGames: true }))

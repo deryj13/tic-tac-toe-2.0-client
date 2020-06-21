@@ -68,7 +68,7 @@ class App extends Component {
             <Game user={user} game={game}/>
           )}/>
           <AuthenticatedRoute user={user} path='/game-index' render={() => (
-            <ShowGames user={user} games={games} />
+            <ShowGames user={user} games={games}/>
           )}/>
         </main>
       </Fragment>

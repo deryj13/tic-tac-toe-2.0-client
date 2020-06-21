@@ -1,22 +1,47 @@
 import React, { Component } from 'react'
-// import { withRouter } from 'react-router-dom'
+
 import GameBoard from './GameBoard'
 
-import { updateGame } from '../../api/game'
+import { showGame, updateGame } from '../../api/game'
 
 class Game extends Component {
   constructor () {
     super()
 
     this.state = {
+      game: null,
       xIsNext: true,
       over: false
     }
   }
-  // variable/array to represent board
-  board = Array(9).fill(null)
 
-  // helper function to check for winner
+  board = Array(9).fill('')
+
+  async componentDidMount () {
+    const { user, game } = this.props
+    if (this.props.game) {
+      try {
+        const response = await showGame(user, game._id)
+        this.setState({ game: response.data.game[0] })
+        this.setState({ over: this.state.game.over })
+        this.state.game.cells.forEach((value, i) => {
+          this.board[i] = value
+        })
+
+        const xValues = this.board.filter((i) => i === 'x').length
+        const oValues = this.board.filter((i) => i === 'o').length
+
+        if (!this.board.every((i) => i === '')) {
+          if (xValues > oValues) {
+            this.setState({ xIsNext: false })
+          }
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+
   checkWinner = () => {
     const combos = [
       [0, 1, 2],
@@ -37,41 +62,32 @@ class Game extends Component {
     }
   }
 
-  // helper function to check for draw
   checkDraw = () => {
-    if (this.board.every((i) => i !== null)) {
+    if (this.board.every((i) => i !== '')) {
       return true
     }
   }
 
-  // helper function for marking and updating the board
   handleClick = (event) => {
-    // conditional to prevent moves after a game is over
     if (this.state.over) {
       return
     }
     const { user, game } = this.props
-    // we need to store the value of the cell to update api
     const value = this.state.xIsNext ? 'x' : 'o'
-    // we need to re-assign and store the index to update api
     const index = event.target.id
-    // updating the board with new values
+
     this.board[event.target.id] = value
-    // actually marking the board
     document.getElementById(event.target.id).innerHTML = value
-    // we need to re-assign and store the 'over' value to update api
+
     const over = !!(this.checkWinner() || this.checkDraw())
     this.setState({ over: over })
-    // alternating turns
+
     this.setState({ xIsNext: !this.state.xIsNext })
     updateGame(user, game, index, value, over)
-      .then(res => console.log(res.data.game))
       .catch(console.error)
   }
 
   render () {
-    console.log(this.props)
-    console.log(this.board)
     return (
       <GameBoard state={this.state} onClick={this.handleClick}/>
     )
