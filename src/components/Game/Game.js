@@ -72,19 +72,22 @@ class Game extends Component {
     if (this.state.over) {
       return
     }
-    const { user, game } = this.props
-    const value = this.state.xIsNext ? 'x' : 'o'
-    const index = event.target.id
 
-    this.board[event.target.id] = value
-    document.getElementById(event.target.id).innerHTML = value
+    if (document.getElementById(event.target.id).innerHTML === '') {
+      const { user, game } = this.props
+      const value = this.state.xIsNext ? 'x' : 'o'
+      const index = event.target.id
 
-    const over = !!(this.checkWinner() || this.checkDraw())
-    this.setState({ over: over })
+      this.board[event.target.id] = value
+      document.getElementById(event.target.id).innerHTML = value
 
-    this.setState({ xIsNext: !this.state.xIsNext })
-    updateGame(user, game, index, value, over)
-      .catch(console.error)
+      const over = !!(this.checkWinner() || this.checkDraw())
+      this.setState({ over: over })
+
+      this.setState({ xIsNext: !this.state.xIsNext })
+      updateGame(user, game, index, value, over)
+        .catch(console.error)
+    }
   }
 
   render () {

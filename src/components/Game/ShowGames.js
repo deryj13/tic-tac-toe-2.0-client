@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 
 import Game from './Game'
+import CreateGame from './CreateGame'
 
 import { showGame } from '../../api/game'
 
@@ -10,7 +11,8 @@ class ShowGames extends Component {
     super()
 
     this.state = {
-      game: null
+      game: null,
+      historyVisible: true
     }
   }
 
@@ -27,11 +29,11 @@ class ShowGames extends Component {
   }
 
   render () {
-    const { user } = this.props
+    const { user, setGame } = this.props
     const noGame = () => (
       <Fragment>
-        <div className="show-games-container">
-          <div className="game-history col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div className="show-games-container col-12">
+          <div className='game-history col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             {this.props.games.map((games, i) => (
               <Button key={i} id={games._id} onClick={this.onClick} className="game-history-buttons col-3">Game {i}</Button>
             ))}
@@ -40,16 +42,28 @@ class ShowGames extends Component {
       </Fragment>
     )
 
+    const unfinishedOptions = () => (
+      <Fragment>
+        <h3>Finish another time!</h3>
+        <Button href='#/'>Home</Button><br/>
+        <Button href='#/sign-out'>Log Off</Button>
+      </Fragment>
+    )
+    const gameOverOptions = () => (
+      <Fragment>
+        <h3>Game Over!</h3>
+        <CreateGame user={user} setGame={setGame}/><br/>
+        <Button href='#/'>Home</Button><br/>
+      </Fragment>
+    )
     const withGame = () => (
       <Fragment>
-        <div className="show-games-container">
-          <div className="game-history col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            {this.props.games.map((games, i) => (
-              <Button key={i} id={games._id} onClick={this.onClick} className="game-history-buttons col-3">Game {i}</Button>
-            ))}
-          </div>
-          <div className="game-board hidden col-8">
+        <div className="show-games-container col-12">
+          <div className="game-board col-8">
             <Game user={user} game={this.state.game}/>
+          </div>
+          <div className="game-message col-4">
+            {this.state.game.over ? gameOverOptions() : unfinishedOptions()}
           </div>
         </div>
       </Fragment>
