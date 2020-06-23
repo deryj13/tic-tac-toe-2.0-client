@@ -9,23 +9,25 @@ class CreateGame extends Component {
   constructor () {
     super()
     this.state = {
-      created: false
+      created: false,
+      gameID: null
     }
   }
+
   onCreateGame = () => {
     event.preventDefault()
     const { setGame } = this.props
     createGame(this.props.user)
       .then(res => {
         setGame(res.data.game)
+        this.setState({ gameID: res.data.game._id })
       })
       .then(() => this.setState({ created: true }))
-      // .then(() => history.push('/games'))
       .catch(console.error)
   }
   render () {
     if (this.state.created) {
-      return <Redirect to='/games' />
+      return <Redirect to={'/games'} />
     }
     return (
       <Fragment>

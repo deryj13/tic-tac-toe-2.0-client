@@ -10,7 +10,8 @@ class GetGames extends Component {
     super()
 
     this.state = {
-      obtainedGames: false
+      obtainedGames: false,
+      gameID: null
     }
   }
 
@@ -26,7 +27,7 @@ class GetGames extends Component {
   }
   render () {
     if (this.state.obtainedGames) {
-      return <Redirect to='/game-index'/>
+      return <Redirect to='/game-index' />
     }
     return (
       <Fragment>

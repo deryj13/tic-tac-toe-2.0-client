@@ -1,6 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 main > .container-fluid {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   padding: 0;
   width: 100vw;
 }
@@ -16,25 +19,17 @@ main > .container-fluid {
   width: 150px;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .container-fluid {
-  // border: 3px solid rgb(0, 0, 0);
   display: flex;
   justify-content: center;
 }
 
-.game-message {
-  // align-items: center;
-  // align-self: center;
+.show-game-board {
+  align-items: center;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: center;
-  width: 600px;
+  margin-top: 30px;
 }
 
 .game-container {
@@ -62,8 +57,12 @@ main > .container-fluid {
   padding: 2px;
 }
 
-.hidden {
-  display: none;
+.game-over-options {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  padding: 2px;
 }
 
 .home-buttons {
@@ -90,8 +89,9 @@ main > .container-fluid {
 }
 
 .show-games-container {
+  align-items: center;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   width: 1000px;
 }

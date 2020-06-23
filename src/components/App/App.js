@@ -11,7 +11,8 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Home from '../Home/Home'
 import Game from '../Game/Game'
-import ShowGames from '../Game/ShowGames'
+import GameIndex from '../Game/GameIndex'
+import ShowGame from '../Game/ShowGame'
 
 class App extends Component {
   constructor () {
@@ -64,11 +65,18 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <Home user={user} setGame={this.setGame} setGames={this.setGames}/>
           )}/>
-          <AuthenticatedRoute user={user} exact path='/games' render={() => (
-            <Game user={user} game={game}/>
-          )}/>
           <AuthenticatedRoute user={user} path='/game-index' render={() => (
-            <ShowGames user={user} games={games} setGame={this.setGame}/>
+            <GameIndex user={user} games={games} setGame={this.setGame} />
+          )}/>
+          <AuthenticatedRoute user={user} exact path='/games' render={(props) => (
+            <Fragment>
+              <Game {...props} user={user} game={game} setGame={this.setGame}/>
+            </Fragment>
+          )}/>
+          <AuthenticatedRoute user={user} exact path='/games/:id' render={(props) => (
+            <Fragment>
+              <ShowGame {...props} user={user} game={game} setGame={this.setGame} setGames={this.setGames} />
+            </Fragment>
           )}/>
         </main>
       </Fragment>
