@@ -8,6 +8,16 @@ main > .container-fluid {
   width: 100vw;
 }
 
+.about {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.about-screen {
+  margin: 50px;
+}
 .cell {
   display: flex;
   align-items: center;
@@ -38,7 +48,7 @@ main > .container-fluid {
   flex-flow: row wrap;
   height: 462px;
   justify-content: center;
-  margin: 100px;
+  margin: 50px;
   padding: 2px;
   width: 462px;
 }

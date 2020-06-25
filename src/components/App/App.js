@@ -10,6 +10,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Home from '../Home/Home'
+import About from '../About/About'
 import Game from '../Game/Game'
 import GameIndex from '../Game/GameIndex'
 import ShowGame from '../Game/ShowGame'
@@ -64,6 +65,9 @@ class App extends Component {
           )} />
           <Route exact path='/' render={() => (
             <Home user={user} setGame={this.setGame} setGames={this.setGames}/>
+          )}/>
+          <Route path='/about' render={() => (
+            <About user={user}/>
           )}/>
           <AuthenticatedRoute user={user} path='/game-index' render={() => (
             <GameIndex user={user} games={games} setGame={this.setGame} />
