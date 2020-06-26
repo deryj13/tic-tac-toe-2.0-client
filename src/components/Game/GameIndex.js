@@ -32,7 +32,6 @@ class GameIndex extends Component {
 
     return (
       <Fragment>
-        {console.log(this.props)}
         <div className="show-games-container col-12">
           <div className='game-history col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             {games.map((games, i) => (

@@ -47,10 +47,17 @@ class Game extends Component {
         this.setState({ over: this.state.game.over })
         this.state.game.cells.forEach((value, i) => {
           this.board[i] = value
+
+          if (value === 'X') {
+            document.getElementById(i).style.color = '#004ef5'
+          } else {
+            document.getElementById(i).style.color = '#c71c06'
+          }
+
           document.getElementById(i).innerHTML = value
         })
-        const xValues = this.board.filter((i) => i === 'x').length
-        const oValues = this.board.filter((i) => i === 'o').length
+        const xValues = this.board.filter((i) => i === 'X').length
+        const oValues = this.board.filter((i) => i === 'Z').length
 
         if (!this.board.every((i) => i === '')) {
           if (xValues > oValues) {
@@ -94,9 +101,15 @@ class Game extends Component {
       return
     }
 
+    if (this.state.xIsNext) {
+      document.getElementById(event.target.id).style.color = '#004ef5'
+    } else {
+      document.getElementById(event.target.id).style.color = '#c71c06'
+    }
+
     if (document.getElementById(event.target.id).innerHTML === '') {
       const { user, game } = this.props
-      const value = this.state.xIsNext ? 'x' : 'o'
+      const value = this.state.xIsNext ? 'X' : 'Z'
       const index = event.target.id
 
       this.board[event.target.id] = value
@@ -127,10 +140,10 @@ class Game extends Component {
     }
     return (
       <Fragment>
-        <GameBoard state={this.state} onClick={this.handleClick}/>
+        <GameBoard state={this.state} xIsNext={this.state.xIsNext} onClick={this.handleClick}/>
         <Modal
           show={this.state.show}
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >

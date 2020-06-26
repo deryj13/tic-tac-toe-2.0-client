@@ -73,14 +73,10 @@ class App extends Component {
             <GameIndex user={user} games={games} setGame={this.setGame} />
           )}/>
           <AuthenticatedRoute user={user} exact path='/games' render={(props) => (
-            <Fragment>
-              <Game {...props} user={user} game={game} setGame={this.setGame}/>
-            </Fragment>
+            <Game user={user} game={game} setGame={this.setGame}/>
           )}/>
           <AuthenticatedRoute user={user} exact path='/games/:id' render={(props) => (
-            <Fragment>
-              <ShowGame {...props} user={user} game={game} setGame={this.setGame} setGames={this.setGames} />
-            </Fragment>
+            <ShowGame user={user} game={game} setGame={this.setGame} setGames={this.setGames} />
           )}/>
         </main>
       </Fragment>

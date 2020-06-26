@@ -23,9 +23,9 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar className="navbar" variant="dark" expand="md">
     <Navbar.Brand href="#">
-      tic-tac-toe-2.0
+      Tic-Tac-Toe
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

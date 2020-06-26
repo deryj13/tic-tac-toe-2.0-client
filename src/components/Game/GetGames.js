@@ -31,7 +31,7 @@ class GetGames extends Component {
     }
     return (
       <Fragment>
-        <Button onClick={this.onGetGames} className="btn btn-primary home-buttons">Get Games</Button>
+        <Button onClick={this.onGetGames} className="btn btn-dark home-buttons">Get Games</Button>
       </Fragment>
     )
   }
