@@ -21,7 +21,7 @@ class Home extends Component {
         </Row>
         <Row className="home-welcome-row">
           <div className="home-welcome-content col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <h3>Welcome!</h3>
+            <h3 className="space-title">Welcome!</h3>
             <p>
             Tic-Tac-Toe, also known as noughts and crosses is normally a game you play with a friend (or by yourself) on a 3x3 grid made on paper with a pencil. In this rendition, you can play online with your friend right next to you taking turns! Although, the opitmal strategy to aim for a tie has probably already been discovered, it&#39;s still a nice way to pass time and keep you sharp!
 

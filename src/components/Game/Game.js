@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
 
 import GameBoard from './GameBoard'
-import { createGame, showGame, updateGame } from '../../api/game'
+import { showGame, updateGame } from '../../api/game'
 
 class Game extends Component {
   constructor (props) {
@@ -13,27 +14,15 @@ class Game extends Component {
     this.state = {
       game: null,
       xIsNext: true,
+      isLoading: true,
       over: false,
-      show: false,
-      newGameCreated: false,
-      newGame: null
+      show: false
     }
   }
 
   showModal = () => this.setState({ show: true })
-  hideModal = () => this.setState({ show: false })
-
-  onNewGame = () => {
-    const { user, setGame } = this.props
-    event.preventDefault()
-    createGame(user)
-      .then(res => {
-        console.log(res)
-        setGame(res.data.game)
-        this.setState({ newGame: res.data.game })
-      })
-      .then(() => this.setState({ newGameCreated: true }))
-      .catch(console.error)
+  hideModal = () => {
+    this.setState({ show: false, isLoading: true })
   }
 
   board = Array(9).fill('')
@@ -43,27 +32,35 @@ class Game extends Component {
     if (this.props.game) {
       try {
         const response = await showGame(user, game._id)
-        this.setState({ game: response.data.game[0] })
-        this.setState({ over: this.state.game.over })
-        this.state.game.cells.forEach((value, i) => {
-          this.board[i] = value
+        setTimeout(() => {
+          this.setState({
+            game: response.data.game[0],
+            over: response.data.game[0].over
+          })
 
-          if (value === 'X') {
-            document.getElementById(i).style.color = '#004ef5'
-          } else {
-            document.getElementById(i).style.color = '#c71c06'
+          this.setState({ isLoading: false })
+
+          if (this.state.game) {
+            this.state.game.cells.forEach((value, i) => {
+              this.board[i] = value
+              if (value === 'X') {
+                document.getElementById(i).style.color = '#004ef5'
+              } else {
+                document.getElementById(i).style.color = '#c71c06'
+              }
+              document.getElementById(i).innerHTML = value
+            })
           }
 
-          document.getElementById(i).innerHTML = value
-        })
-        const xValues = this.board.filter((i) => i === 'X').length
-        const oValues = this.board.filter((i) => i === 'Z').length
+          const xValues = this.board.filter((i) => i === 'X').length
+          const oValues = this.board.filter((i) => i === 'Z').length
 
-        if (!this.board.every((i) => i === '')) {
-          if (xValues > oValues) {
-            this.setState({ xIsNext: false })
+          if (!this.board.every((i) => i === '')) {
+            if (xValues > oValues) {
+              this.setState({ xIsNext: false })
+            }
           }
-        }
+        }, 2000)
       } catch (error) {
         console.error(error)
       }
@@ -101,14 +98,15 @@ class Game extends Component {
       return
     }
 
-    if (this.state.xIsNext) {
-      document.getElementById(event.target.id).style.color = '#004ef5'
-    } else {
-      document.getElementById(event.target.id).style.color = '#c71c06'
-    }
-
     if (document.getElementById(event.target.id).innerHTML === '') {
       const { user, game } = this.props
+
+      if (this.state.xIsNext) {
+        document.getElementById(event.target.id).style.color = '#004ef5'
+      } else {
+        document.getElementById(event.target.id).style.color = '#c71c06'
+      }
+
       const value = this.state.xIsNext ? 'X' : 'Z'
       const index = event.target.id
 
@@ -125,41 +123,56 @@ class Game extends Component {
             this.showModal()
           }
         })
-        .then(() => {
-          if (over && this.props.showModal2()) {
-            this.props.showModal2()
-          }
-        })
         .catch(console.error)
     }
   }
 
   render () {
-    if (this.state.newGameCreated) {
-      return <Redirect to={`/games/${this.state.newGame._id}`} />
+    const { game } = this.props
+
+    const gameOverOptions = () => (
+      <div className="game-over-options space-title col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <h3>Game Over!</h3>
+        <Button className="game-over" href="#/">Home</Button>
+      </div>
+    )
+
+    if (this.state.isLoading) {
+      return (
+        <Fragment>
+          <Row className="loading-row">
+            <h3 className="space-title">... is Loading</h3>
+            <div className="zero-ready col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            </div>
+          </Row>
+        </Fragment>
+      )
     }
+
     return (
       <Fragment>
-        <GameBoard state={this.state} xIsNext={this.state.xIsNext} onClick={this.handleClick}/>
-        <Modal
-          show={this.state.show}
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Game Over!
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Start a New Game!?</h4>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.onNewGame}>New Game</Button>
-            <Button onClick={this.hideModal} href="#/">Home</Button>
-          </Modal.Footer>
-        </Modal>
+        <Row className="show-game-board">
+          {game.over ? gameOverOptions() : ''}
+          <GameBoard state={this.state} xIsNext={this.state.xIsNext} onClick={this.handleClick}/>
+          <Modal
+            show={this.state.show}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header className="game-modal">
+              <Modal.Title className="game-modal space-title" id="contained-modal-title-vcenter">
+                Game Over!
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="game-modal space-title">
+              <h4>Go Back to the Home Screen to start a New Game!?</h4>
+            </Modal.Body>
+            <Modal.Footer className="game-modal space-title">
+              <Button className="modal-buttons" onClick={this.hideModal} href="#/">Home</Button>
+            </Modal.Footer>
+          </Modal>
+        </Row>
       </Fragment>
     )
   }

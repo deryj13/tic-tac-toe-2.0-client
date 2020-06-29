@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
 
 import { showGame } from '../../api/game'
 
@@ -32,13 +33,26 @@ class GameIndex extends Component {
 
     return (
       <Fragment>
-        <div className="show-games-container col-12">
-          <div className='game-history col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+        <Row className="show-games-container">
+          <div className="show-games-title">
+            <h3 className="space-title">History of Games:</h3>
+          </div>
+          <div className='game-history col-xs-4 col-sm-8 col-md-12 col-lg-12'>
             {games.map((games, i) => (
-              <Button key={i} id={games._id} onClick={this.onClick} className="game-history-buttons col-3">Game {i}</Button>
+              <Button key={i} id={games._id} onClick={this.onClick} className="btn game-buttons col-2">Game {i}</Button>
             ))}
           </div>
-        </div>
+        </Row>
+        <Row className="game-header-row">
+          <div className="x-and-zero col-xs-12 col-sm-8 col-md-8 col-lg-6">
+          </div>
+        </Row>
+        <Row className="game-index-footer">
+          <div className="game-index-options col-xs-6 col-sm-8 col-md-8 col-lg-12">
+            <Button className="game-buttons col-2" href="#/">Home</Button>
+            <Button className="game-buttons col-2" href="#sign-out">Sign Out</Button>
+          </div>
+        </Row>
       </Fragment>
     )
   }

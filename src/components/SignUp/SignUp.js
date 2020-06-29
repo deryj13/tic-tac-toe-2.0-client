@@ -56,10 +56,10 @@ class SignUp extends Component {
         <Row className="auth-row">
           <Jumbotron className="sign-up-screen col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div className="col-sm-10 col-md-8 mx-auto mt-5">
-              <h3>Sign Up</h3>
+              <h3 className="space-title">Sign Up</h3>
               <Form onSubmit={this.onSignUp}>
                 <Form.Group controlId="email">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label className="auth-text">email address</Form.Label>
                   <Form.Control
                     required
                     type="email"
@@ -70,7 +70,7 @@ class SignUp extends Component {
                   />
                 </Form.Group>
                 <Form.Group controlId="password">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label className="auth-text">password</Form.Label>
                   <Form.Control
                     required
                     name="password"
@@ -81,7 +81,7 @@ class SignUp extends Component {
                   />
                 </Form.Group>
                 <Form.Group controlId="passwordConfirmation">
-                  <Form.Label>Password Confirmation</Form.Label>
+                  <Form.Label className="auth-text">password confirmation</Form.Label>
                   <Form.Control
                     required
                     name="passwordConfirmation"
@@ -92,7 +92,7 @@ class SignUp extends Component {
                   />
                 </Form.Group>
                 <Button
-                  className="btn-dark"
+                  className="btn-dark auth-buttons"
                   variant="primary"
                   type="submit"
                 >
@@ -104,7 +104,7 @@ class SignUp extends Component {
         </Row>
         <Row className="home-welcome-row">
           <div className="home-welcome-content col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <h3>Welcome!</h3>
+            <h3 className="space-title">Welcome!</h3>
             <p>
             Tic-Tac-Toe, also known as noughts and crosses is normally a game you play with a friend (or by yourself) on a 3x3 grid made on paper with a pencil. In this rendition, you can play online with your friend right next to you taking turns! Although, the opitmal strategy to aim for a tie has probably already been discovered, it&#39;s still a nice way to pass time and keep you sharp!
 

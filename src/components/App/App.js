@@ -13,7 +13,6 @@ import Home from '../Home/Home'
 import About from '../About/About'
 import Game from '../Game/Game'
 import GameIndex from '../Game/GameIndex'
-import ShowGame from '../Game/ShowGame'
 
 class App extends Component {
   constructor () {
@@ -73,10 +72,10 @@ class App extends Component {
             <GameIndex user={user} games={games} setGame={this.setGame} />
           )}/>
           <AuthenticatedRoute user={user} exact path='/games' render={(props) => (
-            <Game user={user} game={game} setGame={this.setGame}/>
+            <Game user={user} game={game}/>
           )}/>
           <AuthenticatedRoute user={user} exact path='/games/:id' render={(props) => (
-            <ShowGame user={user} game={game} setGame={this.setGame} setGames={this.setGames} />
+            <Game user={user} game={game}/>
           )}/>
         </main>
       </Fragment>

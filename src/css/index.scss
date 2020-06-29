@@ -5,7 +5,12 @@
   src: url('../fonts/castaway.otf');
 }
 
-$basecolor: #00b3ff;
+@font-face {
+  font-family: spaceage;
+  src: url('../fonts/spaceage.ttf')
+}
+
+$basecolor: #191f26;
 $jumbocolor: rgba(119, 140, 212, .5);
 
 main > .container-fluid {
@@ -15,13 +20,24 @@ main > .container-fluid {
 
 .about {
   align-items: center;
+  color: #ffffff;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
+.about-container {
+  background-image: url('./xandz.jpeg');
+  display: flex;
+  justify-content: center;
+}
+
 .about-screen {
   margin: 50px;
+}
+
+.auth-buttons {
+  font-family: spaceage;
 }
 
 .auth-row {
@@ -39,6 +55,11 @@ main > .container-fluid {
   flex-flow: column nowrap;
   justify-content: center;
   margin: auto;
+}
+
+.auth-text {
+  color: #ffffff;
+  font-weight: 400;
 }
 
 .cell {
@@ -107,7 +128,7 @@ main > .container-fluid {
   background-position: center;
   display: flex;
   justify-content: center;
-  margin: 80px;
+  margin: 30px;
 }
 
 .game-board {
@@ -120,16 +141,28 @@ main > .container-fluid {
   width: 462px;
 }
 
+.game-buttons {
+  align-items: center;
+  background-image: url('./Bluelagoo.jpg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin: 3px;
+  padding: 2px;
+}
+
 .game-container {
   align-items: center;
-  background-color: #191f26;
+  background-color: $basecolor;
   display: flex;
   justify-content: center;
 }
 
 .game-header-row {
   align-items: center;
-  background-color: #191f26;
+  background-color: $basecolor;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -140,17 +173,38 @@ main > .container-fluid {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  width: 500px;
 }
 
-.game-history-buttons {
-  height: 50px;
-  margin: 5px 3px;
-  padding: 2px;
+.game-index-footer {
+  align-items: center;
+  background-color: $basecolor;
+  display: flex;
+  justify-content: center;
+}
+
+.game-index-options {
+  align-items: center;
+  background-color: $basecolor;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: 100px;
+}
+
+.game-modal {
+  background-color: $basecolor;
+  color: #ffffff;
+}
+
+.game-over {
+  background-image: url('./Bluelagoo.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .game-over-options {
   align-items: center;
+  color: #ffffff;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -160,6 +214,7 @@ main > .container-fluid {
 
 
 .home-buttons {
+  font-family: spaceage;
   margin: 2px;
 }
 
@@ -199,7 +254,7 @@ main > .container-fluid {
 
 .home-welcome-row {
   align-items: center;
-  background-color: #191f26;
+  background-color: $basecolor;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -213,26 +268,53 @@ main > .container-fluid {
   justify-content: center;
 }
 
-.navbar {
+.loading-row {
+  align-items: center;
+  background-color: $basecolor;
+  display: flex;
+  flex-flow: row wrap;
+  height: 600px;
+  justify-content: center;
+}
+
+.modal-buttons {
   background-image: url('./Bluelagoo.jpg');
   background-position: center;
   background-size: cover;
 }
 
+.navbar {
+  background-image: url('./Bluelagoo.jpg');
+  background-position: center;
+  background-size: cover;
+  font-family: spaceage;
+}
+
 .show-game-board {
   align-items: center;
-  background-color: #191f26;
+  background-color: $basecolor;
   display: flex;
   justify-content: center;
 }
 
 .show-games-container {
   align-items: center;
-  background-color: #191f26;
+  background-color: $basecolor;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  width: 100%;
+}
+
+.show-games-title {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.space-title {
+  color: #ffffff;
+  font-family: spaceage;
 }
 
 .sign-up-screen {
@@ -246,13 +328,25 @@ main > .container-fluid {
 .x-and-zero {
   align-items: center;
   background-image: url('./xandzero.gif');
-  background-size: cover;
   background-position: center;
+  background-size: cover;
   border: 2px solid #fafbff;
   color: #fafbff;
   display: flex;
   flex-flow: row wrap;
   height: 225px;
+  justify-content: center;
+  margin: 50px;
+}
+
+.zero-ready {
+  align-items: center;
+  background-image: url('./zeroready.gif');
+  background-position: center;
+  background-size: cover;
+  border: 2px solid #fafbff;
+  display: flex;
+  height: 400px;
   justify-content: center;
   margin: 50px;
 }

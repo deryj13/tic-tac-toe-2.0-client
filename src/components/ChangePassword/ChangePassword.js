@@ -54,10 +54,10 @@ class ChangePassword extends Component {
         <Row className="auth-row">
           <Jumbotron className="auth-screen col-xs-8 col-sm-8 col-md-8 col-lg-6">
             <div className="col-sm-10 col-md-8 mx-auto mt-5">
-              <h3>Change Password</h3>
+              <h3 className="space-title">Change Password</h3>
               <Form onSubmit={this.onChangePassword}>
                 <Form.Group controlId="oldPassword">
-                  <Form.Label>Old password</Form.Label>
+                  <Form.Label className="auth-text">old password</Form.Label>
                   <Form.Control
                     required
                     name="oldPassword"
@@ -68,7 +68,7 @@ class ChangePassword extends Component {
                   />
                 </Form.Group>
                 <Form.Group controlId="newPassword">
-                  <Form.Label>New Password</Form.Label>
+                  <Form.Label className="auth-text">new password</Form.Label>
                   <Form.Control
                     required
                     name="newPassword"
@@ -79,7 +79,7 @@ class ChangePassword extends Component {
                   />
                 </Form.Group>
                 <Button
-                  className="btn-dark"
+                  className="btn-dark auth-buttons"
                   variant="primary"
                   type="submit"
                 >
