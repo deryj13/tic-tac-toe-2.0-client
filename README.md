@@ -11,6 +11,8 @@ discovered, it's still a nice way to pass time and keep you sharp!
 
 Create an account, sign-in and remember to have fun!
 
+![gameplay](tictactoe_screenshot.png)
+
 ## Planning
 
 My idea for the design was to have a 3x3 grid with the outter borders hidden
