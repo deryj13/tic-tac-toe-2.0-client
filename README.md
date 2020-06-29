@@ -17,7 +17,7 @@ Create an account, sign-in and remember to have fun!
 
 My idea for the design was to have a 3x3 grid with the outter borders hidden
 for a cleaner look. One of the end goals for this project was to have the
-"X & O" makrers replacedby images of X and Zero, from the Megaman series.
+"X & O" markers replaced by images of X and Zero, from the Megaman series.
 
 Planning consisted of figuring out what was needed for the game, such as a
 grid, markers for the grid, turns for the players, win/draw conditions, etc.
