@@ -51,5 +51,6 @@ I would like for future iterations to have soem kind of functionality that is ab
 * Sass
 * Bootstrap
 * JavaScript
+* React
 * Axios
 * General Assembly Tic-Tac-Toe API
