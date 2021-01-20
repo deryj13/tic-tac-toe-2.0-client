@@ -1,5 +1,5 @@
 
-curl "https://tic-tac-toe-wdi.herokuapp.com/games/${ID}" \
+curl "https://tic-tac-toe-api-development.herokuapp.com/games/${ID}" \
   --include \
   --request PATCH \
   --header "Authorization: Token token=${TOKEN}" \
