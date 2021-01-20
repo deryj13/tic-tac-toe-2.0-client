@@ -18,15 +18,14 @@ class GameIndex extends Component {
     const { user, setGame } = this.props
     showGame(user, event.target.id)
       .then((res) => {
-        setGame(res.data.game[0])
-        this.setState({ game: res.data.game[0] })
+        setGame(res.data.game)
+        this.setState({ game: res.data.game })
       })
       .catch(console.error)
   }
 
   render () {
     const { games } = this.props
-
     if (this.state.game) {
       return <Redirect to={`/games/${this.state.game._id}`} />
     }

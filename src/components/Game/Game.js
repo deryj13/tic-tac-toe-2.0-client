@@ -34,8 +34,8 @@ class Game extends Component {
         const response = await showGame(user, game._id)
         setTimeout(() => {
           this.setState({
-            game: response.data.game[0],
-            over: response.data.game[0].over
+            game: response.data.game,
+            over: response.data.game.over
           })
 
           this.setState({ isLoading: false })
